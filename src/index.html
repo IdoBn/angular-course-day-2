@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>START - PART 2</title>
+
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="todo/todo.css">
+</head>
+
+<body ng-app="app">
+
+<!-- main navigation-->
+<nav class="navbar navbar-default">
+    <div class="container">
+
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">Task Manager | Angular</a>
+        </div>
+
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Tasks</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<div class="container" ng-controller="parentCtrl as parent">
+
+    <header class="row">
+        <div class="page-header">
+            <h1>Task Manager
+                <span class="glyphicon glyphicon-th pull-right"></span>
+            </h1>
+        </div>
+    </header>
+
+    <!-- action bar -->
+    <section class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <button class="btn btn-default">show/hide completed</button>
+                <button class="btn btn-default">Clear Log</button>
+            </div>
+        </div>
+    </section><!-- /action bar -->
+
+    <div class="row">
+
+        <!-- task log -->
+        <div class="col-lg-3" ng-controller="logCtrl as log">
+            <ul class="list-unstyled">
+                <li ng-repeat="item in log.logs"><samp>{{item}}</samp></li>
+            </ul>
+        </div> <!-- /task log -->
+
+        <!-- task table -->
+        <div class="col-lg-7" ng-controller="taskTableCtrl as table">
+
+            <form class="form-group form-inline pull-right">
+                <div class="input-group">
+                    <input type="text" class="form-control"/>
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                </div>
+            </form>
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Complete</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat='item in table.tasks' ng-class="{strike: item.complete}">
+                    <td class="text-center"><input class="input" type="checkbox" ng-click="table.completeTask(item)" ng-model='item.complete'/></td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.desc}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <button ng-click="table.removeTask(item)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button ng-click="table.editTask(item)" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div><!-- /task table -->
+
+        <!-- task form -->
+        <div class="col-lg-2" ng-controller="formCtrl as form">
+
+            <form class="form-horizontal">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Title" ng-model="task.title">
+                </div>
+
+                <div class="form-group">
+                    <textarea rows="6" class="form-control" placeholder="Description" ng-model="task.desc"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button class="form-control btn btn-primary" ng-click="form.addTask(task)">{{ (task.complete == null) ? 'Add' : 'Edit'}}</button>
+                </div>
+            </form>
+        </div><!-- /task form -->
+
+    </div>
+</div><!-- /container-->
+
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="app.module.js"></script>
+<script src="todo/app.todo.module.js"></script>
+<script src="todo/parent.controller.js"></script>
+<script src="todo/form.controller.js"></script>
+<script src="todo/log.controller.js"></script>
+<script src="todo/taskTable.controller.js"></script>
+</body>
+
+</html>

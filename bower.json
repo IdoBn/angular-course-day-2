@@ -1,0 +1,19 @@
+{
+  "name": "todo-advanced",
+  "version": "0.0.0",
+  "authors": [
+    "Ido Ben-Natan <ido.bennatan@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.2.19",
+    "bootstrap": "~3.2.0"
+  }
+}
