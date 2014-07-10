@@ -60,7 +60,7 @@
 
             <form class="form-group form-inline pull-right">
                 <div class="input-group">
-                    <input type="text" class="form-control"/>
+                    <input type="text" class="form-control" ng-model="table.query"/>
                     <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
                 </div>
             </form>
@@ -76,7 +76,7 @@
                 </thead>
                 <tbody>
 
-                <tr ng-repeat='item in table.showTasks' ng-class="{strike: item.complete}">
+                <tr ng-repeat='item in table.showTasks | filter:table.query' ng-class="{strike: item.complete}">
                     <td class="text-center"><input class="input" type="checkbox" ng-click="table.completeTask(item)" ng-model='item.complete'/></td>
                     <td>{{item.title}}</td>
                     <td>{{item.desc}}</td>
