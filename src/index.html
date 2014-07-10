@@ -51,7 +51,7 @@
         <!-- task log -->
         <div class="col-lg-3" ng-controller="logCtrl as log">
             <ul class="list-unstyled">
-                <li ng-repeat="item in log.logs"><samp>{{item}}</samp></li>
+                <li ng-repeat="item in log.logs track by $index"><samp>{{item}}</samp></li>
             </ul>
         </div> <!-- /task log -->
 

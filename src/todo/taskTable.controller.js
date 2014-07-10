@@ -10,7 +10,6 @@
     ];
 
     scope.$on('event:task:save', function(event, data) {
-      console.log('tasks ctrl', data);
       self.tasks.push({
         title: data.title,
         desc: data.desc,
