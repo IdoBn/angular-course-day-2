@@ -24,6 +24,15 @@
     scope.$on('event:task:complete', function(event, data) {
       scope.$broadcast('event:task:completed', data);
     });
+
+    scope.$on('event:task:toggle', function(event, data) {
+      scope.$broadcast('event:task:toggled', data);
+    })
+
+    scope.$on('event:logs:clear', function(event, data) {
+      console.log('event logs cleared');
+      scope.$broadcast('event:logs:cleared', data);
+    })
   }
 
   angular.module('app.todo')

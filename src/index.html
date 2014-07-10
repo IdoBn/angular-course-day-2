@@ -37,11 +37,11 @@
     </header>
 
     <!-- action bar -->
-    <section class="row">
+    <section class="row" ng-controller="ActionBarCtrl as bar">
         <div class="panel panel-default">
             <div class="panel-body">
-                <button class="btn btn-default">show/hide completed</button>
-                <button class="btn btn-default">Clear Log</button>
+                <button class="btn btn-default" ng-click='bar.toggleTasks()'>show/hide completed</button>
+                <button class="btn btn-default" ng-click="bar.clearLogs()">Clear Log</button>
             </div>
         </div>
     </section><!-- /action bar -->
@@ -76,7 +76,7 @@
                 </thead>
                 <tbody>
 
-                <tr ng-repeat='item in table.tasks' ng-class="{strike: item.complete}">
+                <tr ng-repeat='item in table.showTasks' ng-class="{strike: item.complete}">
                     <td class="text-center"><input class="input" type="checkbox" ng-click="table.completeTask(item)" ng-model='item.complete'/></td>
                     <td>{{item.title}}</td>
                     <td>{{item.desc}}</td>
@@ -125,6 +125,7 @@
 <script src="todo/form.controller.js"></script>
 <script src="todo/log.controller.js"></script>
 <script src="todo/taskTable.controller.js"></script>
+<script src="todo/actionBar.controller.js"></script>
 </body>
 
 </html>

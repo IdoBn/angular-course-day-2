@@ -24,6 +24,10 @@
       var c = data.complete == true ? 'completed' : 'uncompleted';
       scope.log.logs.push(filter('date')((new Date), 'MM/dd/yy h:mm') + ' task ' + c);
     });
+
+    scope.$on('event:logs:cleared', function(event, data) {
+      scope.log.logs = [];
+    });
   }
 
   angular.module('app.todo')

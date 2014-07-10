@@ -9,11 +9,26 @@
       {title: 'third', desc: 'the very third task', complete: false}
     ];
 
+    this.showTasks = this.tasks;
+
     scope.$on('event:task:save', function(event, data) {
       self.tasks.push({
         title: data.title,
         desc: data.desc,
         complete: false
+      });
+    });
+
+    scope.$on('event:task:toggled', function(event, data) {
+      scope.table.showTasks = [];
+      angular.forEach(scope.table.tasks ,function(item) {
+        if (data % 2 == 0) {
+          if (!item.complete) {
+            scope.table.showTasks.push(item);
+          }
+        } else {
+          scope.table.showTasks.push(item);
+        }
       });
     });
 
@@ -36,4 +51,4 @@
   angular.module('app.todo')
     .controller('taskTableCtrl', ['$scope', TaskTable])
 
-}(window, angular))
+}(window, angular)) 
