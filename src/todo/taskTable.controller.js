@@ -22,7 +22,7 @@
         title: data.title,
         desc: data.desc,
         complete: false
-      })
+      });
     });
 
     scope.$on('event:task:toggled', function(event, data) {
