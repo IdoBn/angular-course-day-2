@@ -1,6 +1,7 @@
 (function(window, angular) {
 
   function Parent(scope) {
+
     scope.task = {};
 
     scope.$on('event:task:update', function(event, data) {

@@ -77,7 +77,10 @@
                 <tbody>
 
                 <tr ng-repeat='item in table.tasks | filter:table.query | filter:table.showComplete' ng-class="{strike: item.complete}">
-                    <td class="text-center"><input class="input" type="checkbox" ng-click="table.completeTask(item)" ng-model='item.complete'/></td>
+                    <td class="text-center">
+
+                        <!--todo: you don`t need the ng-click here. your checkbox is binded to the model :)-->
+                        <input class="input" type="checkbox" ng-click="table.completeTask(item)" ng-model='item.complete'/></td>
                     <td>{{item.title}}</td>
                     <td>{{item.desc}}</td>
                     <td>
