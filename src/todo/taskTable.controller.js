@@ -1,6 +1,6 @@
 (function(window, angular) {
 
-  function TaskTable(scope) {
+  function TaskTable(scope, filter) {
     self = this;
 
     this.tasks = [
@@ -17,19 +17,20 @@
         desc: data.desc,
         complete: false
       });
+
+      self.showTasks.push({
+        title: data.title,
+        desc: data.desc,
+        complete: false
+      })
     });
 
     scope.$on('event:task:toggled', function(event, data) {
-      scope.table.showTasks = [];
-      angular.forEach(scope.table.tasks ,function(item) {
-        if (data % 2 == 0) {
-          if (!item.complete) {
-            scope.table.showTasks.push(item);
-          }
-        } else {
-          scope.table.showTasks.push(item);
-        }
-      });
+      if (data % 2 != true) {
+        scope.table.showTasks = filter('filter')(scope.table.tasks, {complete: false});
+      } else {
+        scope.table.showTasks = scope.table.tasks;
+      }
     });
 
     this.removeTask = function(t) {
@@ -49,6 +50,6 @@
   }
 
   angular.module('app.todo')
-    .controller('taskTableCtrl', ['$scope', TaskTable])
+    .controller('taskTableCtrl', ['$scope', '$filter', TaskTable])
 
 }(window, angular)) 
