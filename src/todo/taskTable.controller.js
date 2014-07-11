@@ -1,7 +1,8 @@
 (function(window, angular) {
 
-  function TaskTable(scope, filter) {
+  function TaskTable(scope) {
     self = this;
+    // console.log(this.table.showComplete);
 
     this.tasks = [
       {title: 'first', desc: 'the very first task', complete: false},
@@ -9,16 +10,8 @@
       {title: 'third', desc: 'the very third task', complete: false}
     ];
 
-    this.showTasks = this.tasks;
-
     scope.$on('event:task:save', function(event, data) {
       self.tasks.push({
-        title: data.title,
-        desc: data.desc,
-        complete: false
-      });
-
-      self.showTasks.push({
         title: data.title,
         desc: data.desc,
         complete: false
@@ -26,10 +19,10 @@
     });
 
     scope.$on('event:task:toggled', function(event, data) {
-      if (data % 2 != true) {
-        scope.table.showTasks = filter('filter')(scope.table.tasks, {complete: false});
+      if (data % 2 == 0) {
+        scope.table.showComplete = { complete: false };
       } else {
-        scope.table.showTasks = scope.table.tasks;
+        scope.table.showComplete = '';
       }
     });
 
@@ -50,6 +43,6 @@
   }
 
   angular.module('app.todo')
-    .controller('taskTableCtrl', ['$scope', '$filter', TaskTable])
+    .controller('taskTableCtrl', ['$scope', TaskTable])
 
 }(window, angular)) 
