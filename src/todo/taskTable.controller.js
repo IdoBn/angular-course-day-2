@@ -1,6 +1,8 @@
 (function(window, angular) {
 
   function TaskTable(scope) {
+
+    //todo: you forgot to add the var keyword! you created a global scope var it`s bad :(
     self = this;
     // console.log(this.table.showComplete);
 
@@ -10,6 +12,7 @@
       {title: 'third', desc: 'the very third task', complete: false}
     ];
 
+
     scope.$on('event:task:save', function(event, data) {
       self.tasks.push({
         title: data.title,
@@ -18,6 +21,7 @@
       });
     });
 
+    //todo: the show/hide is a "view" thing (it does not effect the model) deal with it in the HTML
     scope.$on('event:task:toggled', function(event, data) {
       if (data % 2 == 0) {
         scope.table.showComplete = { complete: false };
@@ -36,6 +40,7 @@
       scope.$emit('event:task:edit', t);
     };
 
+    // todo: this function can be removed. the checkbox is binded to the task
     this.completeTask = function(t) {
       t.complete = !t.complete;
       scope.$emit('event:task:complete', t);

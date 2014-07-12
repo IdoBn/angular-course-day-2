@@ -1,8 +1,10 @@
 (function(window, angular) {
 
   function Parent(scope) {
+
     scope.task = {};
 
+    // todo: reduce the amount of watchers.
     scope.$on('event:task:update', function(event, data) {
       scope.task = data;
       scope.$broadcast('event:task:updated', data);
